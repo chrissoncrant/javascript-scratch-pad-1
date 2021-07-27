@@ -1,9 +1,279 @@
+//RECURSION PRACTICE
+
+//Merge Sort:
+
+let arr = [4, 1, 3, 2, 0, -1, 7, 10, 9, 20] //length 10
+
+function mergeSort(arr, start, end) {
+    //base case: Because we are working from the start to the end once the start overlaps the end value we have reached our base case. Not sure what this means just yet. 
+
+    if (start < end) {
+        let mid = Math.floor((start + end) / 2);
+        mergeSort(arr, start, mid);
+        mergeSort(arr, mid + 1, end);
+        merge(arr, start, mid, end);
+    };
+
+    return arr;
+}
+
+function merge(arr, start, mid, end) {
+    //building temp array to avoid modifying original arr.
+
+    let tempArr = [];
+
+    let i = start,
+        j = mid + 1,
+        k = 0;
+
+    while (i <= mid && j <= end)  {       
+        if (arr[i] <= arr[j]) {
+            tempArr[k] = arr[i];
+            i++;
+            k++;
+        } else {
+            tempArr[k] = arr[j];
+            j++;
+            k++;
+        };    
+    }
+    
+    while (i <= mid) {
+        tempArr[k] = arr[i];
+        i++;
+        k++;
+    }
+
+    while (j <= end) {
+        tempArr[k] = arr[j];
+        j++;
+        k++;
+    }
+
+    for (i = start; i <= end; i++) {
+        arr[i] = tempArr[i - start];
+    }
+
+}
+
+
+console.log(mergeSort(arr, 0, 9))
+
+
+
+/* =====================================
+//Fibonacci Sequence:
+
+//Non-optimized:
+//For higher values the recursions becomes intense and will overload the computer. To reduce this we need MEMOIZATION!!
+function getFib(num) {
+    let arr = [];
+    if (!num) {return 0;};
+    if (num === 1) {return 1;};
+    return getFib(num - 1) + getFib(num - 2)
+}
+
+console.log(getFib(30));
+===================================== */
+
+//Binary Search: Find Index Value of a sorted array's value (using divide and conquer):
+
+/*
+//Simple and Elegant Version from the Recursion Video:
+let inputArr = [1, 2, 8, 10, 33, 45, 65, 76, 89, 100]; //length: 10
+
+function findIndex(inputArr, leftBound, rightBound, value) {
+    if (leftBound > rightBound) {
+        return inputArr[0];
+    }
+
+    let midpoint = Math.floor((leftBound + rightBound) / 2);
+
+    if (value === inputArr[midpoint]) {
+        return midpoint;
+    }
+
+    if (value < inputArr[midpoint]) {
+        return findIndex(inputArr, leftBound, midpoint - 1, value);
+    }
+
+    if (value > inputArr[midpoint]) {
+        return findIndex(inputArr, midpoint + 1, rightBound, value)
+    }
+}
+
+
+console.log(findIndex(inputArr, 0, 9, 89)) 
+*/
+
+/*
+//Complicated Version (My non elegant attempt)
+//Benefit of this one is you do not need to know the length of the Array inserted, though it is not hard to determine this.
+let inputArr = [1, 2, 8, 10, 33, 45, 65, 76, 89, 100]; //length: 10
+
+//console.log(inputArr.slice(0, 2).length);
+
+let midpoint = Math.floor((inputArr.length - 1) / 2); //Math.floor is used to eliminate the decimal that occurs if array length - 1 is odd.
+
+function findIndex(inputArr, value) {
+    let midpoint = Math.floor((inputArr.length - 1) / 2); 
+    let strCheck;
+    console.log("here's the string check value: " + strCheck);
+    if (inputArr.length === 1) {
+        if (inputArr[0] === value) {return 0;}
+            else {return "";};
+    };    
+    if (inputArr[midpoint] === value) {
+        return midpoint;
+    };
+    if (inputArr[midpoint] > value) { 
+        strCheck = findIndex(inputArr.slice(0, midpoint), value);
+        if (typeof strCheck === "number") {
+            return strCheck;
+        } else {return "Entered value not found in array"};
+        
+    }
+    if (inputArr[midpoint] < value) {
+        strCheck = findIndex(inputArr.slice((midpoint + 1), inputArr.length), value) + inputArr.slice(0, (midpoint + 1)).length;
+        if (typeof strCheck === "number") {
+            return strCheck;
+        } else {return "value not found in array"};
+     };
+}
+
+console.log(findIndex(inputArr, 4)); 
+*/
+
+/* =====================================
+//Sum of Natural Numbers
+function sumOfRange(start, end) {
+    if (!(end - start)) {
+        return start;
+    }
+    return sumOfRange((start + 1), end) + start;
+}
+
+console.log(sumOfRange(1, 100))
+===================================== */
+
+/* =====================================
+//Decimal to Binary:
+
+function decToBin(num) {
+    if (!num) {return 0 + "";};
+    if (num == 1) {return 1 + "";};
+    let remainder = (num % 2) + "";
+    return decToBin((num - remainder) / 2) + remainder;
+}
+
+console.log(decToBin(233));
+
+
+function getBinary(decimal, result) {
+    if (decimal == 0) {
+        return result;
+    }
+    result = decimal % 2 + result;
+    return getBinary(decimal / 2, result)
+}
+===================================== */
+
+
+/* =====================================
+//Messing with MODULO
+/* if we want to find the whole number integer of the number of divisions: 
+
+take in the dividend, so 5 % 3 is basically 5 / 3, only providing the remainder, after max integers of the divisor are removed.
+
+Modulo provides only the remainder. Here is a function that provides the number of times the divisor fully divides into the dividend. 
+
+modulo + (quotient of dividend/divisor)(divisor) = Dividend
+
+m + qb = a
+
+function getWholeQuotients(dividend, divisor) {
+    let modulo = dividend % divisor;
+    let numOfWholeQuotients = (dividend - modulo) / divisor;
+    return numOfWholeQuotients;
+}
+===================================== */ 
+
+/* =====================================
+//Palindrome Finder:
+function isThisAPalindrome(str) {
+    if (!(str.length) || str.length === 1) {
+        return true;
+    }
+    if (str.charAt(0) === str.charAt(str.length - 1)) {
+        return isThisAPalindrome(str.slice(1, (str.length -1)));
+    }
+    return false;
+}
+
+console.log(isThisAPalindrome("kayak"))
+===================================== */ 
+
+
+/* =====================================
+//String reverse using recursion:
+function strRev(str) {
+    if (!str.length) {
+        return "";
+    }
+    return  strRev(str.slice(1)) + str.charAt(0);
+}
+
+console.log(strRev("chunky chicken"))
+===================================== */ 
+
+/* =====================================
+//String reverse using while loop (iteratively):
+function strRev(str) {
+    let arr = [];
+    let strChar = 0;
+    let keepGoing = true;
+    while(keepGoing) {
+        if (str.charAt(strChar) === "") {
+            keepGoing = false;
+        } 
+        arr.unshift(str.charAt(strChar))
+        strChar++;
+    }
+    str = arr.join("");
+    return str;
+}
+
+console.log(strRev("string this"))
+===================================== */
+
+
+//===================================================
+//===================================================
+//===================================================
+//ARRAY PRACTICE
+/*
+let fruitArr = ["apples", "oranges", "bananas", "peaches"];
+
+function createLi(arr) {
+    let arrLength = arr.length;
+    let text = "";
+    for (let i = 0; i < arrLength; i++) {
+        text += `<li>${arr[i]}</li>`;
+    }
+    return text;
+}
+
+console.log(createLi(fruitArr));
+
+document.getElementById("demo").innerHTML = createLi(fruitArr);
+*/
+
 
 //===================================================
 //===================================================
 //===================================================
 //TRANSFORMING CASE
-
+/*
 let str = "camelCaseYourAss";
 
 
@@ -15,7 +285,7 @@ function lowerCase(str){
   }
 
 console.log(lowerCase(str));
-
+*/
 
 
 //===================================================
@@ -180,9 +450,9 @@ const theButton = document.querySelector("button");
 theButton.onclick = function() {
     let answer = prompt("Are you pressing my button?");
     if (answer === "yes") {
-        alert("okay!");
+        alert("Thank you!");
     } else {
-        alert("well screw you then buddy!");
+        alert("Just say 'yes'.");
     }  
 }
 
