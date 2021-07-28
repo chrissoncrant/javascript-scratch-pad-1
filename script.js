@@ -1,7 +1,31 @@
+// npm test tempConversion.spec.js
+const ftoc = function(temp) {
+    temp = ((temp - 32) * (5/9));
+    if (temp % 1) {
+        return temp.toFixed(1);
+    };
+    return temp;
+
+};
+
+const ctof = function(temp) {
+    temp = (temp * (9/5)) + 32;
+    if (temp % 1) {
+        return temp.toFixed(1);
+    }
+    return temp;
+};
+
+console.log(ftoc(0))
+
+
+
+
+
 //RECURSION PRACTICE
 
 //Merge Sort:
-
+/*
 let arr = [4, 1, 3, 2, 0, -1, 7, 10, 9, 20] //length 10
 
 function mergeSort(arr, start, end) {
@@ -58,7 +82,7 @@ function merge(arr, start, mid, end) {
 
 
 console.log(mergeSort(arr, 0, 9))
-
+*/
 
 
 /* =====================================
