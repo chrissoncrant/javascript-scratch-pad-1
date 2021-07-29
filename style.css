@@ -36,6 +36,7 @@ button {
     border-radius: 10px;
     border: 2px solid grey;
     transition: 0.2s;
+    white-space: nowrap;
 }
 
 button:hover {

@@ -1,4 +1,7 @@
-// npm test tempConversion.spec.js
+
+
+
+
 const ftoc = function(temp) {
     temp = ((temp - 32) * (5/9));
     if (temp % 1) {
@@ -489,6 +492,67 @@ function makeGreen() {
     h1.style.textTransform = "uppercase";
 }
 
+
+
+// =================================================
+/*
+//DOM PRACTICE
+//Storing DOM elements in variables:
+const container = document.querySelector("#container");
+
+const content = document.createElement("div");
+
+const para = document.createElement('p');
+
+const h3 = document.createElement('h3');
+
+const container2 = document.createElement('div');
+
+const cont2para = document.createElement('p');
+
+const h1 = document.createElement('h1');
+
+
+//Adding classes to DOM elements:
+content.classList.add('content');
+
+para.classList.add('paragraph');
+
+h3.classList.add('title3');
+
+
+//Adding text to the DOM elements:
+content.textContent = "This is the glorious text-content!";
+
+para.textContent = "Hey! I am a green paragraph!";
+
+h3.textContent = "Yo! I am a blue h3 element!";
+
+h1.textContent = "I'm an h1 in a div!";
+
+cont2para.textContent = "I'm a p in the same div as h1!";
+
+
+//Styling the DOM elements:
+para.style.color = "green";
+
+h3.style.color = "blue";
+
+container2.style.cssText = "border: 2px solid black; background: pink";
+
+//Appending DOM elements to HTML elements:
+container.appendChild(h3);
+
+container.appendChild(content);
+
+content.appendChild(para);
+
+container2.appendChild(h1);
+
+container2.appendChild(cont2para);
+
+container.appendChild(container2);
+*/
 
 /*
 let firstName = prompt("Enter your first name.");
